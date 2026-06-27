@@ -288,6 +288,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Injects a mock/AI response automatically framed into the text journal
     journalInput.placeholder = `Logged vibe check: ${userVibe}. Type to describe further...`;
+    
+    // Automatically pre-populate the grounding script based on swipe results
+    generateGroundingScript(userVibe, [], []);
   }
 
   btnSwipeLeft.addEventListener('click', () => {
@@ -671,6 +674,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   safetyCloseBtn.addEventListener('click', () => safetyModal.classList.add('hidden'));
   closeBtnX.addEventListener('click', () => safetyModal.classList.add('hidden'));
+
+  // Initialize default grounding script on page load
+  generateGroundingScript('chill', [], []);
 
   // Load initial card deck on start
   loadMemeDeck();
