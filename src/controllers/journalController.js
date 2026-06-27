@@ -26,8 +26,22 @@ const VIBE_ASSETS = {
 exports.analyzeJournal = async (req, res) => {
   const { text, examTrack = 'JEE', persona = 'empathetic_peer' } = req.body;
 
-  if (!text || text.trim() === '') {
-    return res.status(400).json({ success: false, error: 'Journal content is required' });
+  if (!text || typeof text !== 'string' || text.trim() === '') {
+    return res.status(400).json({ success: false, error: 'Journal content is required and must be text' });
+  }
+
+  if (text.length > 2000) {
+    return res.status(400).json({ success: false, error: 'Journal content too long (maximum 2000 characters)' });
+  }
+
+  const allowedTracks = ['JEE', 'NEET', 'UPSC', 'CAT'];
+  if (!allowedTracks.includes(examTrack.toUpperCase())) {
+    return res.status(400).json({ success: false, error: 'Invalid exam track selection' });
+  }
+
+  const allowedPersonas = ['empathetic_peer', 'strategic_coach'];
+  if (!allowedPersonas.includes(persona)) {
+    return res.status(400).json({ success: false, error: 'Invalid AI persona dialect' });
   }
 
   try {

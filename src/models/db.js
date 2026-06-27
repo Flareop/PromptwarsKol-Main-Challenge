@@ -57,21 +57,26 @@ function initDb() {
   }
 }
 
-initDb();
+let dbCache = null;
 
-function readData() {
-  try {
-    const content = fs.readFileSync(DB_PATH, 'utf8');
-    return JSON.parse(content);
-  } catch (e) {
-    console.error('Failed to read db.json:', e);
-    return { memes: [], posts: [], vibeLogs: [] };
+function loadDb() {
+  if (!dbCache) {
+    initDb();
+    try {
+      const content = fs.readFileSync(DB_PATH, 'utf8');
+      dbCache = JSON.parse(content);
+    } catch (e) {
+      console.error('Failed to load db.json, fallback to empty structure:', e);
+      dbCache = { memes: [], posts: [], vibeLogs: [] };
+    }
   }
+  return dbCache;
 }
 
-function writeData(data) {
+function saveDb() {
+  if (!dbCache) return false;
   try {
-    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+    fs.writeFileSync(DB_PATH, JSON.stringify(dbCache, null, 2));
     return true;
   } catch (e) {
     console.error('Failed to write db.json:', e);
@@ -79,42 +84,42 @@ function writeData(data) {
   }
 }
 
+// Initial load
+loadDb();
+
 module.exports = {
-  getMemes: () => readData().memes,
+  getMemes: () => dbCache.memes,
   saveMeme: (meme) => {
-    const data = readData();
-    const index = data.memes.findIndex(m => m.id === meme.id);
+    const index = dbCache.memes.findIndex(m => m.id === meme.id);
     if (index >= 0) {
-      data.memes[index] = { ...data.memes[index], ...meme };
+      dbCache.memes[index] = { ...dbCache.memes[index], ...meme };
     } else {
-      data.memes.push(meme);
+      dbCache.memes.push(meme);
     }
-    writeData(data);
+    saveDb();
   },
   
-  getPosts: () => readData().posts,
+  getPosts: () => dbCache.posts,
   addPost: (post) => {
-    const data = readData();
     const newPost = {
       id: 'post_' + Math.random().toString(36).substr(2, 9),
       timestamp: new Date().toISOString(),
       ...post
     };
-    data.posts.unshift(newPost); // Most recent first
-    writeData(data);
+    dbCache.posts.unshift(newPost); // Most recent first
+    saveDb();
     return newPost;
   },
 
-  getVibeLogs: () => readData().vibeLogs,
+  getVibeLogs: () => dbCache.vibeLogs,
   addVibeLog: (log) => {
-    const data = readData();
     const newLog = {
       id: 'log_' + Math.random().toString(36).substr(2, 9),
       timestamp: new Date().toISOString(),
       ...log
     };
-    data.vibeLogs.push(newLog);
-    writeData(data);
+    dbCache.vibeLogs.push(newLog);
+    saveDb();
     return newLog;
   }
 };

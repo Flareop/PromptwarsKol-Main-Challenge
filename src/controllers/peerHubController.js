@@ -24,8 +24,22 @@ exports.getPosts = async (req, res) => {
 exports.createPost = async (req, res) => {
   const { content, examTrack, vibe = 'fahhhhh' } = req.body;
 
-  if (!content || !examTrack) {
-    return res.status(400).json({ success: false, error: 'Content and exam track are required' });
+  if (!content || typeof content !== 'string' || content.trim() === '') {
+    return res.status(400).json({ success: false, error: 'Content text is required' });
+  }
+
+  if (content.length > 500) {
+    return res.status(400).json({ success: false, error: 'Post content is too long (maximum 500 characters)' });
+  }
+
+  const allowedTracks = ['JEE', 'NEET', 'UPSC', 'CAT'];
+  if (!examTrack || !allowedTracks.includes(examTrack.toUpperCase())) {
+    return res.status(400).json({ success: false, error: 'Invalid exam track selection' });
+  }
+
+  const allowedVibes = ['fahhhhh', 'emotional_damage', 'bruh', 'chill'];
+  if (!allowedVibes.includes(vibe)) {
+    return res.status(400).json({ success: false, error: 'Invalid vibe selection' });
   }
 
   try {

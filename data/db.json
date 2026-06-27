@@ -43,6 +43,13 @@
   ],
   "posts": [
     {
+      "id": "post_mmxotaemh",
+      "timestamp": "2026-06-27T09:04:24.355Z",
+      "content": "I wasted all day browsing Reddit instead of practicing mock questions. UPSC prep is rough.",
+      "examTrack": "UPSC",
+      "vibe": "fahhhhh"
+    },
+    {
       "id": "post_huq3vjlgj",
       "timestamp": "2026-06-27T09:01:17.467Z",
       "content": "Well well well",
@@ -233,6 +240,37 @@
       "triggers": [
         "procrastination",
         "syllabus backlog"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_exptjvfn1",
+      "timestamp": "2026-06-27T09:02:07.685Z",
+      "vibe": "fahhhhh",
+      "examTrack": "JEE",
+      "triggers": [
+        "general exam anxiety"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_nbq1f93n1",
+      "timestamp": "2026-06-27T09:04:24.319Z",
+      "vibe": "fahhhhh",
+      "examTrack": "JEE",
+      "triggers": [],
+      "distortions": [],
+      "safetyTriggered": true
+    },
+    {
+      "id": "log_bymne55bu",
+      "timestamp": "2026-06-27T09:04:24.339Z",
+      "vibe": "emotional_damage",
+      "examTrack": "JEE",
+      "triggers": [
+        "parental expectations"
       ],
       "distortions": [],
       "safetyTriggered": false
