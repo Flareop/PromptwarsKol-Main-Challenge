@@ -3,7 +3,7 @@ const geminiService = require('../services/geminiService');
 
 const VIBE_ASSETS = {
   fahhhhh: {
-    audio: '/audio/fahhhhh.mp3',
+    audio: '/audio/faahhhh.mp3',
     image: '/images/fahhhhh.png'
   },
   emotional_damage: {
