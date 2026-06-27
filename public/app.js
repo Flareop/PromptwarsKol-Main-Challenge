@@ -40,6 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateTime, 1000);
   updateTime();
 
+  // Auto-resume AudioContext on first page interaction to prevent suspended state issues
+  document.addEventListener('click', () => {
+    try {
+      const ctx = getAudioContext();
+      if (ctx && ctx.state === 'suspended') {
+        ctx.resume();
+      }
+    } catch (e) {}
+  }, { once: true });
+
   // --- Web Audio API Synth Fallbacks ---
   function getAudioContext() {
     if (!audioCtx) {
@@ -457,27 +467,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const stopBreathBtn = document.getElementById('stop-breath-btn');
   
   let breathingInterval = null;
+  let breathingCountdown = null;
+  let secondsLeft = 90;
   let breathPhase = 0; // 0 = In, 1 = Hold, 2 = Out, 3 = Hold
 
+  function updateBreathingLabel(label) {
+    breathingInstruction.textContent = `${label} (${secondsLeft}s)`;
+  }
+
   function runBreathingCycle() {
+    if (secondsLeft <= 0) return;
+    
     if (breathPhase === 0) {
-      breathingInstruction.textContent = 'Breathe In...';
+      updateBreathingLabel('Breathe In...');
       breathingBubble.classList.add('expand');
       playTone(220, 330, 4); // Rise tone
       breathPhase = 1;
       breathingInterval = setTimeout(runBreathingCycle, 4000);
     } else if (breathPhase === 1) {
-      breathingInstruction.textContent = 'Hold...';
+      updateBreathingLabel('Hold...');
       breathPhase = 2;
       breathingInterval = setTimeout(runBreathingCycle, 2000);
     } else if (breathPhase === 2) {
-      breathingInstruction.textContent = 'Breathe Out...';
+      updateBreathingLabel('Breathe Out...');
       breathingBubble.classList.remove('expand');
       playTone(330, 220, 4); // Fall tone
       breathPhase = 3;
       breathingInterval = setTimeout(runBreathingCycle, 4000);
     } else if (breathPhase === 3) {
-      breathingInstruction.textContent = 'Hold...';
+      updateBreathingLabel('Hold...');
       breathPhase = 0;
       breathingInterval = setTimeout(runBreathingCycle, 2000);
     }
@@ -500,19 +518,47 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch(e){}
   }
 
+  function stopBreathing(completed = false) {
+    clearTimeout(breathingInterval);
+    clearInterval(breathingCountdown);
+    
+    startBreathBtn.classList.remove('hidden');
+    stopBreathBtn.classList.add('hidden');
+    breathingBubble.classList.remove('expand');
+    
+    if (completed) {
+      breathingInstruction.textContent = 'Reset complete! 🌟';
+      // Synth a short happy victory chime
+      playTone(523.25, 659.25, 0.4);
+    } else {
+      breathingInstruction.textContent = 'Breathe In...';
+    }
+  }
+
   startBreathBtn.addEventListener('click', () => {
     startBreathBtn.classList.add('hidden');
     stopBreathBtn.classList.remove('hidden');
+    
+    secondsLeft = 90;
     breathPhase = 0;
+    
+    // Start countdown timer
+    breathingCountdown = setInterval(() => {
+      secondsLeft--;
+      // Update label with current phase text
+      const currentText = breathingInstruction.textContent.split(' (')[0];
+      breathingInstruction.textContent = `${currentText} (${secondsLeft}s)`;
+      
+      if (secondsLeft <= 0) {
+        stopBreathing(true);
+      }
+    }, 1000);
+    
     runBreathingCycle();
   });
 
   stopBreathBtn.addEventListener('click', () => {
-    clearTimeout(breathingInterval);
-    startBreathBtn.classList.remove('hidden');
-    stopBreathBtn.classList.add('hidden');
-    breathingInstruction.textContent = 'Breathe In...';
-    breathingBubble.classList.remove('expand');
+    stopBreathing(false);
   });
 
   // --- Cooked Hub Forum Module ---

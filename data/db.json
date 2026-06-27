@@ -140,6 +140,95 @@
       ],
       "distortions": [],
       "safetyTriggered": false
+    },
+    {
+      "id": "log_mtzhv6aez",
+      "timestamp": "2026-06-27T08:50:33.489Z",
+      "vibe": "fahhhhh",
+      "examTrack": "JEE",
+      "triggers": [
+        "general exam anxiety"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_exq928gww",
+      "timestamp": "2026-06-27T08:50:57.695Z",
+      "vibe": "emotional_damage",
+      "examTrack": "JEE",
+      "triggers": [
+        "parental expectations"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_tcpk1is74",
+      "timestamp": "2026-06-27T08:52:27.715Z",
+      "vibe": "chill",
+      "examTrack": "JEE",
+      "triggers": [
+        "general exam anxiety"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_pn7b2ybtx",
+      "timestamp": "2026-06-27T08:52:31.344Z",
+      "vibe": "chill",
+      "examTrack": "JEE",
+      "triggers": [
+        "general exam anxiety"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_r1tigxgiq",
+      "timestamp": "2026-06-27T08:53:43.250Z",
+      "vibe": "chill",
+      "examTrack": "JEE",
+      "triggers": [
+        "general exam anxiety"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_vtfe4txtu",
+      "timestamp": "2026-06-27T08:55:19.899Z",
+      "vibe": "chill",
+      "examTrack": "JEE",
+      "triggers": [
+        "general exam anxiety"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_589f1w9xr",
+      "timestamp": "2026-06-27T08:55:59.352Z",
+      "vibe": "fahhhhh",
+      "examTrack": "JEE",
+      "triggers": [
+        "general exam anxiety"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_coxaf7pxy",
+      "timestamp": "2026-06-27T08:56:13.769Z",
+      "vibe": "bruh",
+      "examTrack": "JEE",
+      "triggers": [
+        "procrastination",
+        "syllabus backlog"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
     }
   ]
 }
