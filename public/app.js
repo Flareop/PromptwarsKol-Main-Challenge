@@ -531,8 +531,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (completed) {
       breathingInstruction.textContent = 'Reset complete! 🌟';
-      // Synth a short happy victory chime
-      playTone(523.25, 659.25, 0.4);
+      // Play the chill.mp3 audio file
+      const audio = new Audio('/audio/chill.mp3');
+      audio.volume = 0.4;
+      audio.play().catch(e => console.log('Breathing completion sound play blocked/failed:', e));
     } else {
       breathingInstruction.textContent = 'Breathe In...';
     }
