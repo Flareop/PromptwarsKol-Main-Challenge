@@ -1,0 +1,6 @@
+node_modules/
+.env
+.DS_Store
+C:\Users\kinja\.gemini\antigravity-ide\brain\*
+C:\Users\kinja\.gemini\antigravity-ide\tasks\*
+*.log

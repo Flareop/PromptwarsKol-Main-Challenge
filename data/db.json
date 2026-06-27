@@ -1,0 +1,145 @@
+{
+  "memes": [
+    {
+      "id": "m1",
+      "imageUrl": "/images/fahhhhh.png",
+      "tags": [
+        "#SyllabusPanic",
+        "#Burnout",
+        "#ExamStress"
+      ],
+      "description": "When you realize the syllabus is infinite and the time is finite."
+    },
+    {
+      "id": "m2",
+      "imageUrl": "/images/emotional_damage.png",
+      "tags": [
+        "#ParentalPressure",
+        "#PeerComparison",
+        "#EmotionalDamage"
+      ],
+      "description": "No one compares to the cousin who cleared NEET in their first attempt."
+    },
+    {
+      "id": "m3",
+      "imageUrl": "/images/bruh.png",
+      "tags": [
+        "#Procrastination",
+        "#TimeManagement",
+        "#WastedTime"
+      ],
+      "description": "Making a study schedule takes 5 hours. Studying takes 5 minutes."
+    },
+    {
+      "id": "m4",
+      "imageUrl": "/images/chill.png",
+      "tags": [
+        "#AcademicWin",
+        "#ChillVibes",
+        "#GotItDone"
+      ],
+      "description": "Solving that high-level question on the first try feels like a dub."
+    }
+  ],
+  "posts": [
+    {
+      "id": "post_61ecwqr4d",
+      "timestamp": "2026-06-27T08:30:22.933Z",
+      "content": "this is shit",
+      "examTrack": "NEET",
+      "vibe": "emotional_damage"
+    },
+    {
+      "id": "post_5jak7h7n7",
+      "timestamp": "2026-06-27T08:19:39.383Z",
+      "content": "I wasted all day browsing Reddit instead of practicing mock questions. UPSC prep is rough.",
+      "examTrack": "UPSC",
+      "vibe": "fahhhhh"
+    },
+    {
+      "id": "post_gnb3h54ex",
+      "timestamp": "2026-06-27T08:19:27.307Z",
+      "content": "I wasted all day browsing Reddit instead of practicing mock questions. UPSC prep is rough.",
+      "examTrack": "UPSC",
+      "vibe": "fahhhhh"
+    },
+    {
+      "id": "p1",
+      "content": "Is anyone else studying for JEE physics and feeling completely lost? Thermodynamics is killing me.",
+      "examTrack": "JEE",
+      "vibe": "fahhhhh",
+      "timestamp": "2026-06-27T07:19:09.489Z"
+    },
+    {
+      "id": "p2",
+      "content": "Wasted the whole afternoon watching mock exam review streams. Tomorrow's test is going to be a disaster.",
+      "examTrack": "NEET",
+      "vibe": "bruh",
+      "timestamp": "2026-06-27T06:19:09.491Z"
+    }
+  ],
+  "vibeLogs": [
+    {
+      "id": "log_722x3a4k5",
+      "timestamp": "2026-06-27T08:19:27.283Z",
+      "vibe": "fahhhhh",
+      "examTrack": "JEE",
+      "triggers": [],
+      "distortions": [],
+      "safetyTriggered": true
+    },
+    {
+      "id": "log_8ot0j6a6g",
+      "timestamp": "2026-06-27T08:19:27.294Z",
+      "vibe": "emotional_damage",
+      "examTrack": "JEE",
+      "triggers": [
+        "parental expectations"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_ougl1k5eg",
+      "timestamp": "2026-06-27T08:19:39.368Z",
+      "vibe": "fahhhhh",
+      "examTrack": "JEE",
+      "triggers": [],
+      "distortions": [],
+      "safetyTriggered": true
+    },
+    {
+      "id": "log_e223nd2e4",
+      "timestamp": "2026-06-27T08:19:39.375Z",
+      "vibe": "emotional_damage",
+      "examTrack": "JEE",
+      "triggers": [
+        "parental expectations"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_zmnfnsb8w",
+      "timestamp": "2026-06-27T08:28:33.628Z",
+      "vibe": "emotional_damage",
+      "examTrack": "JEE",
+      "triggers": [
+        "mock test drops"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    },
+    {
+      "id": "log_syr1ddam1",
+      "timestamp": "2026-06-27T08:29:45.031Z",
+      "vibe": "emotional_damage",
+      "examTrack": "JEE",
+      "triggers": [
+        "mock test drops"
+      ],
+      "distortions": [],
+      "safetyTriggered": false
+    }
+  ]
+}

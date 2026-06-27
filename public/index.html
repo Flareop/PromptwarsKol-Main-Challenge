@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXAM PANIC RETRO WORKSPACE // v2.0</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Retro Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=VT323&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- CRT Monitor Scanline Overlay Effect -->
+  <div class="crt-overlay"></div>
+  <div class="crt-flicker"></div>
+  <div class="grid-background"></div>
+
+  <!-- Main Scrapbook Container -->
+  <div class="main-wrapper">
+    <!-- Header with stickers -->
+    <header class="app-header">
+      <div class="sticker sticker-pink rotating-left" onclick="alert('KEEP HUSTLIN!')">100% NO CAP</div>
+      <div class="sticker sticker-green rotating-right" onclick="alert('DO NOT PANIC!')">STUDY OR CRY?</div>
+      
+      <div class="logo-area">
+        <h1 class="logo-title">PANIC_WORKSPACE_v2.0</h1>
+        <p class="logo-subtitle">GEN-Z STUDY COACH & ANONYMOUS HUB FOR ASPIRANTS</p>
+      </div>
+
+      <div class="status-badge">
+        <span class="pulse-dot"></span>
+        <span id="vibe-profile-badge">PROFILE: UNCHECKED</span>
+      </div>
+    </header>
+
+    <!-- Tab Selection Buttons (Geocities Style) -->
+    <nav class="workspace-tabs">
+      <button class="tab-btn active" data-tab="tab-swipe">💾 VIBE_SWIPE.EXE</button>
+      <button class="tab-btn" data-tab="tab-journal">📝 TRAUMA_DUMP.TXT</button>
+      <button class="tab-btn" data-tab="tab-breathe">🧘 BREATHE.SYS</button>
+      <button class="tab-btn" data-tab="tab-hub">💬 COOKED_HUB.NET</button>
+    </nav>
+
+    <!-- Main Workspace Container -->
+    <div class="tab-content-wrapper">
+      
+      <!-- Tab 1: Vibe Swipe Deck -->
+      <div id="tab-swipe" class="tab-pane active">
+        <div class="tab-grid-layout">
+          <div class="tab-desc-card">
+            <h3>Vibe Check Swipe Deck</h3>
+            <p>Flip through these memes to log your current feelings. Swiping right means "Vibe is relatable", swiping left means "Nah, next". Your swipe log shapes your stress profile!</p>
+            <div class="swipe-stats-console">
+              <div>Swipe Relatability: <span id="swipe-relate-count">0</span>/3</div>
+              <div>Current Vibe: <span id="logged-vibe-display" class="highlight-text">UNKNOWN</span></div>
+            </div>
+            <button id="refresh-deck-btn" class="retro-btn text-btn"><span>REFRESH DECK</span></button>
+          </div>
+
+          <div class="swipe-deck-area">
+            <div class="deck-window-header">
+              <span>CARD_DECK.DLL</span>
+            </div>
+            <div class="deck-card-container" id="swipe-card-stack">
+              <!-- Cards are inserted here dynamically via app.js -->
+              <div class="deck-card-placeholder">LOADING MEME STACK...</div>
+            </div>
+            <div class="deck-controls">
+              <button id="swipe-left-btn" class="control-btn reject-btn">❌ MEH</button>
+              <button id="swipe-right-btn" class="control-btn accept-btn">💖 REAL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Trauma Dump Journal -->
+      <div id="tab-journal" class="tab-pane">
+        <div class="workspace-grid">
+          <!-- Left Column: Input Station -->
+          <section class="control-panel panel-left">
+            <div class="panel-header">
+              <span class="panel-title">⚡ VENTING_ENGINE.TXT</span>
+            </div>
+            
+            <div class="panel-body">
+              <p class="instruction-text">
+                Dump your academic frustrations. Select your exam track and AI persona to tailor the empathy response.
+              </p>
+              
+              <form id="journal-form">
+                <!-- Dropdowns for Track & Persona -->
+                <div class="dropdown-row">
+                  <div class="form-group">
+                    <label for="exam-track">TARGET EXAM:</label>
+                    <select id="exam-track">
+                      <option value="JEE">JEE (Engineering)</option>
+                      <option value="NEET">NEET (Medical)</option>
+                      <option value="UPSC">UPSC (Civil Services)</option>
+                      <option value="CAT">CAT (Management)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="ai-persona">AI DIALECT:</label>
+                    <select id="ai-persona">
+                      <option value="empathetic_peer">Empathetic Peer (Sarcastic/Comforting)</option>
+                      <option value="strategic_coach">Strategic Coach (High-Energy/Tactical)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="textarea-wrapper">
+                  <textarea 
+                    id="journal-input" 
+                    placeholder="Wasted 6 hours on social media instead of solving calculus. Mock test is in 2 days and my parents think I am locked in. Literally cooked..."
+                    maxlength="1500"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="form-footer">
+                  <span class="char-counter"><span id="char-count">0</span> / 1500</span>
+                  <button type="submit" id="submit-btn" class="retro-btn">
+                    <span>RUN VIBE CHECK</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <!-- Right Column: Vibe Output Console -->
+          <section class="control-panel panel-right">
+            <div class="panel-header">
+              <span class="panel-title">📺 DUMP_ANALYST.EXE</span>
+            </div>
+
+            <div class="panel-body console-body">
+              <!-- Loading -->
+              <div id="console-loading" class="console-state hidden">
+                <div class="spinner-glitch"></div>
+                <p class="loading-text">DECODING COGNITIVE DISTORTIONS...</p>
+              </div>
+
+              <!-- Idle -->
+              <div id="console-idle" class="console-state">
+                <div class="pixel-smiley">¯\_(ツ)_/¯</div>
+                <p class="idle-text">DUMP ENGINE STANDBY</p>
+                <p class="idle-sub">awaiting_journal_dump_payload...</p>
+              </div>
+
+              <!-- Result -->
+              <div id="console-result" class="console-state hidden">
+                <div class="vibe-header">
+                  <div class="vibe-badge" id="result-vibe-tag">VIBE: PENDING</div>
+                  <button id="replay-sound-btn" class="sound-pill-btn">🔊 REPLAY SOUND</button>
+                </div>
+
+                <!-- Extracted Meta -->
+                <div class="extraction-box">
+                  <div class="meta-item">
+                    <strong>Triggers Detected:</strong>
+                    <span id="meta-triggers">None</span>
+                  </div>
+                  <div class="meta-item">
+                    <strong>Cognitive Distortions:</strong>
+                    <span id="meta-distortions" class="highlight-pink">None</span>
+                  </div>
+                </div>
+
+                <div class="meme-container">
+                  <img id="result-meme" src="" alt="Vibe Meme">
+                </div>
+
+                <div class="response-card">
+                  <div class="response-title" id="response-persona-label">EMPATHIC PEER:</div>
+                  <p id="result-empathy" class="response-text">Empathy payload goes here.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Tab 3: BREATHE.SYS (Micro-Doses) -->
+      <div id="tab-breathe" class="tab-pane">
+        <div class="tab-grid-layout breathe-layout">
+          <div class="control-panel panel-left breathe-controls">
+            <div class="panel-header"><span class="panel-title">MINDFULNESS_BUBBLE.SYS</span></div>
+            <div class="panel-body">
+              <h3>The 90-Second Reset</h3>
+              <p class="instruction-text">
+                Matches your breathing to the expanding circle to reset your central nervous system.
+              </p>
+              
+              <!-- Breathing circle animation container -->
+              <div class="breathing-circle-container">
+                <div class="breathing-circle" id="breathing-bubble"></div>
+                <div class="breathing-text" id="breathing-instruction">Breathe In...</div>
+              </div>
+
+              <div class="breathing-buttons">
+                <button id="start-breath-btn" class="retro-btn"><span>START BREATHE</span></button>
+                <button id="stop-breath-btn" class="retro-btn error-btn hidden"><span>RESET</span></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="control-panel panel-right script-controls">
+            <div class="panel-header"><span class="panel-title">EXAM_MINDFULNESS_SCRIPT.DLL</span></div>
+            <div class="panel-body">
+              <h3>Exam-Specific Grounding Script</h3>
+              <p class="instruction-text">
+                Rather than generic guides, this tool generates a 1-minute audio-ready script focusing on your specific triggers.
+              </p>
+              
+              <div class="script-box">
+                <textarea id="script-display-box" readonly placeholder="Your custom exam stress reduction script will generate here when you dump your trauma..."></textarea>
+              </div>
+              
+              <button id="speak-script-btn" class="retro-btn" disabled><span>🔊 READ ALOUD (TTS)</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Peer Hub Forum -->
+      <div id="tab-hub" class="tab-pane">
+        <div class="tab-grid-layout hub-layout">
+          
+          <!-- Forum Input Form -->
+          <div class="control-panel panel-left">
+            <div class="panel-header"><span class="panel-title">POST_PANIC_TO_FEED.EXE</span></div>
+            <div class="panel-body">
+              <h3>Vent Anonymously</h3>
+              <p class="instruction-text">All posts are 100% anonymous. Content is moderated by AI to maintain a supportive space and block toxic competition.</p>
+              
+              <form id="hub-post-form">
+                <div class="form-group">
+                  <label for="post-track">EXAM CATEGORY:</label>
+                  <select id="post-track" required>
+                    <option value="JEE">JEE (Engineering)</option>
+                    <option value="NEET">NEET (Medical)</option>
+                    <option value="UPSC">UPSC (Civil Services)</option>
+                    <option value="CAT">CAT (Management)</option>
+                  </select>
+                </div>
+                
+                <div class="textarea-wrapper">
+                  <textarea 
+                    id="post-content" 
+                    placeholder="Share what is making you panic right now..."
+                    maxlength="500"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="form-footer">
+                  <button type="submit" id="post-submit-btn" class="retro-btn"><span>POST VENT</span></button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Forum Feed List -->
+          <div class="control-panel panel-right">
+            <div class="panel-header">
+              <span class="panel-title">SHARED_TRAUMA_FEED.LOG</span>
+              <div class="hub-filter-area">
+                <select id="hub-filter-track">
+                  <option value="ALL">ALL EXAMS</option>
+                  <option value="JEE">JEE</option>
+                  <option value="NEET">NEET</option>
+                  <option value="UPSC">UPSC</option>
+                  <option value="CAT">CAT</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="panel-body feed-body" id="hub-feed-container">
+              <!-- Dynamic post entries go here -->
+              <div class="feed-placeholder">LOADING RECENT PANICS...</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer info -->
+    <footer class="app-footer">
+      <div class="footer-left">SYSTEM_TIME: <span id="system-time">13:46:00</span></div>
+      <div class="footer-center">VIBE CHECK COUNTER: <span id="vibe-count">0</span></div>
+      <div class="footer-right">MODULAR EXPANDED PLATFORM</div>
+    </footer>
+  </div>
+
+  <!-- CLINICAL SAFETY OVERRIDE MODAL -->
+  <div id="safety-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="modal-title">🚨 SYSTEM SAFETY OVERRIDE</span>
+        <button id="close-modal-btn" class="modal-close-x">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-warning-icon">❤️</div>
+        <h3>Hey. Please take a break.</h3>
+        <p class="modal-intro">
+          We noticed things are feeling extremely heavy and hopeless right now. Exam stress can make it feel like your options are closing in, but please remember: **no exam score, result, or percentile is worth your health, peace, or life.**
+        </p>
+        <p class="modal-action">
+          Take a deep breath. Stop studying for the day. Talk to someone. Here are free, confidential numbers where real, caring human beings will listen:
+        </p>
+
+        <!-- Helpline Contacts -->
+        <div class="helpline-list">
+          <div class="helpline-item">
+            <div class="hl-name">AASRA Helpline (India)</div>
+            <div class="hl-num"><a href="tel:+919820466726">+91-9820466726</a></div>
+            <div class="hl-details">Available 24/7. Confidential crisis intervention and emotional support.</div>
+          </div>
+          <div class="helpline-item">
+            <div class="hl-name">Vandrevala Foundation (India)</div>
+            <div class="hl-num"><a href="tel:+919999666555">+91-9999666555</a></div>
+            <div class="hl-details">Available 24/7. Free psychiatric counselling and mental wellness support.</div>
+          </div>
+          <div class="helpline-item">
+            <div class="hl-name">Kiran Mental Health Helpline</div>
+            <div class="hl-num"><a href="tel:18005990019">1800-599-0019</a></div>
+            <div class="hl-details">Govt of India, 24/7 toll-free support in multiple languages.</div>
+          </div>
+          <div class="helpline-item">
+            <div class="hl-name">Global Helpline Directory</div>
+            <div class="hl-details">Find active, verified crisis helplines in your country at <a href="https://findahelpline.com/" target="_blank" rel="noopener">findahelpline.com</a></div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button id="safety-close-btn" class="retro-btn safety-btn"><span>I understand, return to workspace</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
